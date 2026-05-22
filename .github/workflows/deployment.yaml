@@ -1,0 +1,17 @@
+name: Deployment
+on:
+  push:
+    tags:
+      - "v*.*.*"
+jobs:
+  deploy:
+    uses: hcubasd/fuzzy-garbanzo/.github/workflows/fuzzy-garbanzo.yaml@v1.0.1
+    with:
+      registry: docker.io
+      repository: glowing-umbrella
+    secrets:
+      username: ${{secrets.DOCKERHUB_USERNAME}}
+      password: ${{secrets.DOCKERHUB_TOKEN}}
+    permissions:
+      contents: write
+      packages: write
