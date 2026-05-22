@@ -1,0 +1,278 @@
+basePath: /
+definitions:
+  main.Campaign:
+    properties:
+      created_at:
+        type: string
+      description:
+        type: string
+      id:
+        type: string
+      title:
+        type: string
+      updated_at:
+        type: string
+    type: object
+  main.Contact:
+    properties:
+      created_at:
+        type: string
+      emails:
+        type: object
+      full_name:
+        type: string
+      id:
+        type: string
+      job_title:
+        type: string
+      phones:
+        type: object
+      social_profiles:
+        type: object
+      updated_at:
+        type: string
+    type: object
+  main.Deal:
+    properties:
+      amount:
+        type: number
+      campaign:
+        $ref: '#/definitions/main.Campaign'
+      closed_at:
+        type: string
+      contacts:
+        items:
+          $ref: '#/definitions/main.Contact'
+        type: array
+      created_at:
+        type: string
+      expected_close_date:
+        type: string
+      id:
+        type: string
+      loss_reason:
+        $ref: '#/definitions/main.LossReason'
+      organization:
+        $ref: '#/definitions/main.Organization'
+      owner:
+        $ref: '#/definitions/main.User'
+      products:
+        items:
+          $ref: '#/definitions/main.Product'
+        type: array
+      rating:
+        type: integer
+      source:
+        $ref: '#/definitions/main.Source'
+      stage:
+        $ref: '#/definitions/main.PipelineStage'
+      status:
+        type: string
+      tasks:
+        items:
+          $ref: '#/definitions/main.Task'
+        type: array
+      title:
+        type: string
+      updated_at:
+        type: string
+    type: object
+  main.Industry:
+    properties:
+      created_at:
+        type: string
+      id:
+        type: string
+      title:
+        type: string
+      updated_at:
+        type: string
+    type: object
+  main.LossReason:
+    properties:
+      created_at:
+        type: string
+      id:
+        type: string
+      reason:
+        type: string
+      updated_at:
+        type: string
+    type: object
+  main.Organization:
+    properties:
+      address:
+        type: object
+      contacts:
+        items:
+          $ref: '#/definitions/main.Contact'
+        type: array
+      created_at:
+        type: string
+      description:
+        type: string
+      followers:
+        items:
+          $ref: '#/definitions/main.User'
+        type: array
+      id:
+        type: string
+      industries:
+        items:
+          $ref: '#/definitions/main.Industry'
+        type: array
+      owner:
+        $ref: '#/definitions/main.User'
+      title:
+        type: string
+      updated_at:
+        type: string
+      website:
+        type: string
+    type: object
+  main.Pipeline:
+    properties:
+      created_at:
+        type: string
+      display_order:
+        type: integer
+      id:
+        type: string
+      title:
+        type: string
+      updated_at:
+        type: string
+    type: object
+  main.PipelineStage:
+    properties:
+      created_at:
+        type: string
+      description:
+        type: string
+      display_order:
+        type: integer
+      id:
+        type: string
+      objective:
+        type: string
+      pipeline:
+        $ref: '#/definitions/main.Pipeline'
+      title:
+        type: string
+      updated_at:
+        type: string
+    type: object
+  main.Product:
+    properties:
+      created_at:
+        type: string
+      description:
+        type: string
+      id:
+        type: string
+      price:
+        type: number
+      title:
+        type: string
+      updated_at:
+        type: string
+    type: object
+  main.Source:
+    properties:
+      created_at:
+        type: string
+      description:
+        type: string
+      id:
+        type: string
+      title:
+        type: string
+      updated_at:
+        type: string
+    type: object
+  main.Task:
+    properties:
+      assignees:
+        items:
+          $ref: '#/definitions/main.User'
+        type: array
+      completed_at:
+        type: string
+      completed_by:
+        $ref: '#/definitions/main.User'
+      created_at:
+        type: string
+      created_by:
+        $ref: '#/definitions/main.User'
+      description:
+        type: string
+      due_date:
+        type: string
+      id:
+        type: string
+      status:
+        type: string
+      task_type:
+        type: string
+      title:
+        type: string
+      updated_at:
+        type: string
+    type: object
+  main.Team:
+    properties:
+      created_at:
+        type: string
+      id:
+        type: string
+      title:
+        type: string
+      updated_at:
+        type: string
+    type: object
+  main.User:
+    properties:
+      created_at:
+        type: string
+      email:
+        type: string
+      full_name:
+        type: string
+      id:
+        type: string
+      phone:
+        type: string
+      team:
+        $ref: '#/definitions/main.Team'
+      updated_at:
+        type: string
+    type: object
+host: localhost:8080
+info:
+  contact: {}
+  description: CRM deals read API
+  title: Glowing Umbrella API
+  version: 1.0.0
+paths:
+  /deals:
+    get:
+      description: Returns all deals with fully nested graph
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/main.Deal'
+            type: array
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: List deals
+      tags:
+      - deals
+swagger: "2.0"

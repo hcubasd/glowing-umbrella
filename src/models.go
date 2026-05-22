@@ -84,9 +84,9 @@ type Contact struct {
 	ID             string          `json:"id"`
 	FullName       string          `json:"full_name"`
 	JobTitle       *string         `json:"job_title"`
-	Emails         json.RawMessage `json:"emails"`
-	Phones         json.RawMessage `json:"phones"`
-	SocialProfiles json.RawMessage `json:"social_profiles"`
+	Emails         json.RawMessage `json:"emails" swaggertype:"object"`
+	Phones         json.RawMessage `json:"phones" swaggertype:"object"`
+	SocialProfiles json.RawMessage `json:"social_profiles" swaggertype:"object"`
 	CreatedAt      time.Time       `json:"created_at"`
 	UpdatedAt      time.Time       `json:"updated_at"`
 }
@@ -96,7 +96,7 @@ type Organization struct {
 	Title       string          `json:"title"`
 	Description *string         `json:"description"`
 	Website     *string         `json:"website"`
-	Address     json.RawMessage `json:"address"`
+	Address     json.RawMessage `json:"address" swaggertype:"object"`
 	Owner       *User           `json:"owner"`
 	Industries  []Industry      `json:"industries"`
 	Followers   []User          `json:"followers"`

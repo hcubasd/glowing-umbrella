@@ -1,0 +1,424 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "description": "CRM deals read API",
+        "title": "Glowing Umbrella API",
+        "contact": {},
+        "version": "1.0.0"
+    },
+    "host": "localhost:8080",
+    "basePath": "/",
+    "paths": {
+        "/deals": {
+            "get": {
+                "description": "Returns all deals with fully nested graph",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "deals"
+                ],
+                "summary": "List deals",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/main.Deal"
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "main.Campaign": {
+            "type": "object",
+            "properties": {
+                "created_at": {
+                    "type": "string"
+                },
+                "description": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "title": {
+                    "type": "string"
+                },
+                "updated_at": {
+                    "type": "string"
+                }
+            }
+        },
+        "main.Contact": {
+            "type": "object",
+            "properties": {
+                "created_at": {
+                    "type": "string"
+                },
+                "emails": {
+                    "type": "object"
+                },
+                "full_name": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "job_title": {
+                    "type": "string"
+                },
+                "phones": {
+                    "type": "object"
+                },
+                "social_profiles": {
+                    "type": "object"
+                },
+                "updated_at": {
+                    "type": "string"
+                }
+            }
+        },
+        "main.Deal": {
+            "type": "object",
+            "properties": {
+                "amount": {
+                    "type": "number"
+                },
+                "campaign": {
+                    "$ref": "#/definitions/main.Campaign"
+                },
+                "closed_at": {
+                    "type": "string"
+                },
+                "contacts": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/main.Contact"
+                    }
+                },
+                "created_at": {
+                    "type": "string"
+                },
+                "expected_close_date": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "loss_reason": {
+                    "$ref": "#/definitions/main.LossReason"
+                },
+                "organization": {
+                    "$ref": "#/definitions/main.Organization"
+                },
+                "owner": {
+                    "$ref": "#/definitions/main.User"
+                },
+                "products": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/main.Product"
+                    }
+                },
+                "rating": {
+                    "type": "integer"
+                },
+                "source": {
+                    "$ref": "#/definitions/main.Source"
+                },
+                "stage": {
+                    "$ref": "#/definitions/main.PipelineStage"
+                },
+                "status": {
+                    "type": "string"
+                },
+                "tasks": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/main.Task"
+                    }
+                },
+                "title": {
+                    "type": "string"
+                },
+                "updated_at": {
+                    "type": "string"
+                }
+            }
+        },
+        "main.Industry": {
+            "type": "object",
+            "properties": {
+                "created_at": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "title": {
+                    "type": "string"
+                },
+                "updated_at": {
+                    "type": "string"
+                }
+            }
+        },
+        "main.LossReason": {
+            "type": "object",
+            "properties": {
+                "created_at": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "reason": {
+                    "type": "string"
+                },
+                "updated_at": {
+                    "type": "string"
+                }
+            }
+        },
+        "main.Organization": {
+            "type": "object",
+            "properties": {
+                "address": {
+                    "type": "object"
+                },
+                "contacts": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/main.Contact"
+                    }
+                },
+                "created_at": {
+                    "type": "string"
+                },
+                "description": {
+                    "type": "string"
+                },
+                "followers": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/main.User"
+                    }
+                },
+                "id": {
+                    "type": "string"
+                },
+                "industries": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/main.Industry"
+                    }
+                },
+                "owner": {
+                    "$ref": "#/definitions/main.User"
+                },
+                "title": {
+                    "type": "string"
+                },
+                "updated_at": {
+                    "type": "string"
+                },
+                "website": {
+                    "type": "string"
+                }
+            }
+        },
+        "main.Pipeline": {
+            "type": "object",
+            "properties": {
+                "created_at": {
+                    "type": "string"
+                },
+                "display_order": {
+                    "type": "integer"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "title": {
+                    "type": "string"
+                },
+                "updated_at": {
+                    "type": "string"
+                }
+            }
+        },
+        "main.PipelineStage": {
+            "type": "object",
+            "properties": {
+                "created_at": {
+                    "type": "string"
+                },
+                "description": {
+                    "type": "string"
+                },
+                "display_order": {
+                    "type": "integer"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "objective": {
+                    "type": "string"
+                },
+                "pipeline": {
+                    "$ref": "#/definitions/main.Pipeline"
+                },
+                "title": {
+                    "type": "string"
+                },
+                "updated_at": {
+                    "type": "string"
+                }
+            }
+        },
+        "main.Product": {
+            "type": "object",
+            "properties": {
+                "created_at": {
+                    "type": "string"
+                },
+                "description": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "price": {
+                    "type": "number"
+                },
+                "title": {
+                    "type": "string"
+                },
+                "updated_at": {
+                    "type": "string"
+                }
+            }
+        },
+        "main.Source": {
+            "type": "object",
+            "properties": {
+                "created_at": {
+                    "type": "string"
+                },
+                "description": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "title": {
+                    "type": "string"
+                },
+                "updated_at": {
+                    "type": "string"
+                }
+            }
+        },
+        "main.Task": {
+            "type": "object",
+            "properties": {
+                "assignees": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/main.User"
+                    }
+                },
+                "completed_at": {
+                    "type": "string"
+                },
+                "completed_by": {
+                    "$ref": "#/definitions/main.User"
+                },
+                "created_at": {
+                    "type": "string"
+                },
+                "created_by": {
+                    "$ref": "#/definitions/main.User"
+                },
+                "description": {
+                    "type": "string"
+                },
+                "due_date": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "status": {
+                    "type": "string"
+                },
+                "task_type": {
+                    "type": "string"
+                },
+                "title": {
+                    "type": "string"
+                },
+                "updated_at": {
+                    "type": "string"
+                }
+            }
+        },
+        "main.Team": {
+            "type": "object",
+            "properties": {
+                "created_at": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "title": {
+                    "type": "string"
+                },
+                "updated_at": {
+                    "type": "string"
+                }
+            }
+        },
+        "main.User": {
+            "type": "object",
+            "properties": {
+                "created_at": {
+                    "type": "string"
+                },
+                "email": {
+                    "type": "string"
+                },
+                "full_name": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "phone": {
+                    "type": "string"
+                },
+                "team": {
+                    "$ref": "#/definitions/main.Team"
+                },
+                "updated_at": {
+                    "type": "string"
+                }
+            }
+        }
+    }
+}

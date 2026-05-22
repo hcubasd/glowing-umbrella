@@ -38,3 +38,11 @@ if ! command -v golangci-lint; then
 fi
 go install github.com/nametake/golangci-lint-langserver@latest
 go install github.com/go-delve/delve/cmd/dlv@latest
+
+# html
+npm i -g vscode-langservers-extracted
+if ! command -v superhtml; then
+	ARCH=$([[ $(uname -m) = "x86_64" ]] && echo "x86_64-linux-musl" || echo "aarch64-linux")
+	curl -L https://github.com/kristoff-it/superhtml/releases/download/v0.6.2/${ARCH}.tar.xz |
+		tar -xJf - -C /usr/local/bin/ superhtml
+fi
