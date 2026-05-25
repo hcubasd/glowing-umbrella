@@ -5,6 +5,8 @@ import (
 	"time"
 )
 
+// Team represents a CRM team (group of users). It is included in API responses to indicate
+// the team a user belongs to.
 type Team struct {
 	ID        string    `json:"id"`
 	Title     string    `json:"title"`
@@ -12,6 +14,7 @@ type Team struct {
 	UpdatedAt time.Time `json:"updated_at"`
 }
 
+// User represents a CRM user (person). Email and Phone are optional; Team may be nil.
 type User struct {
 	ID        string    `json:"id"`
 	FullName  string    `json:"full_name"`
@@ -22,6 +25,7 @@ type User struct {
 	UpdatedAt time.Time `json:"updated_at"`
 }
 
+// Industry represents a business sector classification for organizations.
 type Industry struct {
 	ID        string    `json:"id"`
 	Title     string    `json:"title"`
@@ -29,6 +33,7 @@ type Industry struct {
 	UpdatedAt time.Time `json:"updated_at"`
 }
 
+// Source represents the origin of a deal (e.g., Web, Referral). Description is optional.
 type Source struct {
 	ID          string    `json:"id"`
 	Title       string    `json:"title"`
@@ -52,6 +57,9 @@ type LossReason struct {
 	UpdatedAt time.Time `json:"updated_at"`
 }
 
+// Product represents a sellable item associated with deals.
+// Price is a decimal value expressed as float64 here for JSON serialization.
+// @name Product
 type Product struct {
 	ID          string    `json:"id"`
 	Title       string    `json:"title"`
@@ -61,6 +69,8 @@ type Product struct {
 	UpdatedAt   time.Time `json:"updated_at"`
 }
 
+// Pipeline groups pipeline stages for deal progression.
+// @name Pipeline
 type Pipeline struct {
 	ID           string    `json:"id"`
 	Title        string    `json:"title"`
@@ -69,6 +79,9 @@ type Pipeline struct {
 	UpdatedAt    time.Time `json:"updated_at"`
 }
 
+// PipelineStage represents a stage within a sales pipeline. Pipeline is embedded to
+// provide the parent pipeline metadata.
+// @name PipelineStage
 type PipelineStage struct {
 	ID           string    `json:"id"`
 	Title        string    `json:"title"`
@@ -80,6 +93,9 @@ type PipelineStage struct {
 	UpdatedAt    time.Time `json:"updated_at"`
 }
 
+// Contact represents an individual contact record. Emails/Phones/SocialProfiles are
+// stored as JSON blobs and surfaced as opaque objects in the API.
+// @name Contact
 type Contact struct {
 	ID             string          `json:"id"`
 	FullName       string          `json:"full_name"`
@@ -91,6 +107,9 @@ type Contact struct {
 	UpdatedAt      time.Time       `json:"updated_at"`
 }
 
+// Organization represents a company or organization. Owner may be nil for anonymous orgs.
+// Industries, Followers and Contacts are populated from join tables.
+// @name Organization
 type Organization struct {
 	ID          string          `json:"id"`
 	Title       string          `json:"title"`
@@ -105,6 +124,9 @@ type Organization struct {
 	UpdatedAt   time.Time       `json:"updated_at"`
 }
 
+// Task represents an action item associated with a deal. CreatedBy is required; CompletedBy is optional.
+// Assignees lists users assigned to the task.
+// @name Task
 type Task struct {
 	ID          string     `json:"id"`
 	Title       string     `json:"title"`
@@ -120,6 +142,9 @@ type Task struct {
 	UpdatedAt   time.Time  `json:"updated_at"`
 }
 
+// Deal is the aggregate root representing a sales opportunity. It nests related
+// objects such as Stage, Organization, Contacts, Products and Tasks.
+// @name Deal
 type Deal struct {
 	ID                string        `json:"id"`
 	Title             string        `json:"title"`
