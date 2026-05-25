@@ -35,6 +35,8 @@ go install github.com/swaggo/swag/cmd/swag@latest
 swag init -g src/main.go -o docs
 ```
 
+Hosted API docs (Swagger UI): https://hcubasd.github.io/glowing-umbrella/
+
 Notes
 
 - CORS in `main.go` is restricted to the dashboard host.
