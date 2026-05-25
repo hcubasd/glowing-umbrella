@@ -1,6 +1,6 @@
 # glowing-umbrella
 
-Glowing Umbrella is a small Go HTTP service that exposes the CRM deals read API used by the dashboard. It assembles a fully‑nested deals graph from the `sales.*` schema and serves it at `GET /deals`.
+Glowing Umbrella is the CRM deals read API for the dashboard project of **mlclogistica.app**. It assembles a fully‑nested deals graph from the `sales.*` schema and serves it at `GET /deals`.
 
 Quick repo notes
 
