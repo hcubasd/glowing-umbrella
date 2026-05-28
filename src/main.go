@@ -18,6 +18,7 @@ func main() {
 	r := gin.Default()
 	r.Use(func(c *gin.Context) {
 		c.Header("Access-Control-Allow-Origin", "https://dashboard.mlclogistica.app")
+		c.Header("Access-Control-Allow-Credentials", "true")
 		c.Header("Access-Control-Allow-Methods", "GET, OPTIONS")
 		c.Header("Access-Control-Allow-Headers", "Authorization, Content-Type")
 		if c.Request.Method == http.MethodOptions {
