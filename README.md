@@ -5,7 +5,7 @@ Glowing Umbrella is the CRM deals read API for the dashboard project of **mlclog
 Quick repo notes
 
 - Source: `src/` (server, DB init, repository, models).
-- Compose: `compose.yaml` runs Postgres + `curly-spoon` migrations (image: `ghcr.io/hcubasd/curly-spoon:1.0.0-rc.4` in dev). Ensure migrations have run before starting the server.
+- Compose: `compose.yaml` runs Postgres + `curly-spoon` migrations (image: `ghcr.io/hcubasd/curly-spoon:1.0.0` in dev). Ensure migrations have run before starting the server.
 
 Build & run (local)
 
@@ -41,5 +41,3 @@ Notes
 
 - CORS in `main.go` is restricted to the dashboard host.
 - For production, set `GIN_MODE=release` and configure trusted proxies as documented by gin.
-
-If you want, I can commit this README and add a small CI step to generate or validate the docs.
