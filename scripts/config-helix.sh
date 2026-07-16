@@ -26,25 +26,14 @@ if ! command -v yamlfmt; then
 		tar -xzf - -C /usr/local/bin yamlfmt
 fi
 
-# docker-compose
-npm i -g @microsoft/compose-language-service
-
 # dockerfile
 npm i -g dockerfile-language-server-nodejs
 
-# go
-go install golang.org/x/tools/gopls@latest
-if ! command -v golangci-lint; then
-	export PATH=$PATH:$(go env GOPATH)/bin
-	curl -sSfL https://golangci-lint.run/install.sh | sh -s -- -b $(go env GOPATH)/bin v2.12.2
-fi
-go install github.com/nametake/golangci-lint-langserver@latest
-go install github.com/go-delve/delve/cmd/dlv@latest
+# docker-compose
+npm i -g @microsoft/compose-language-service
 
-# html
+# typescript
+npm i -g typescript-language-server @biomejs/biome
+
+# json
 npm i -g vscode-langservers-extracted
-if ! command -v superhtml; then
-	ARCH=$([[ $MACHINE_ARCH == "x86_64" ]] && echo "x86_64-linux-musl" || echo "aarch64-linux")
-	curl -L "https://github.com/kristoff-it/superhtml/releases/download/v0.6.2/${ARCH}.tar.xz" |
-		tar -xJf - -C /usr/local/bin/ superhtml
-fi

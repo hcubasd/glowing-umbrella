@@ -19,7 +19,7 @@ services:
       - "-database=postgres://postgres:example@db:5432/postgres?sslmode=disable"
       - "up"
   app:
-    image: golang:1.26
+    image: node:26
     depends_on:
       migrations:
         condition: service_completed_successfully

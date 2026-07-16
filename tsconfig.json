@@ -1,0 +1,10 @@
+{
+	"extends": "@tsconfig/node26/tsconfig.json",
+	"compilerOptions": {
+		"preserveConstEnums": true,
+		"outDir": "dist",
+		"rootDir": "src"
+	},
+	"include": ["src/**/*"],
+	"exclude": ["**/*.test.ts"]
+}
